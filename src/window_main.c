@@ -57,32 +57,31 @@ open_info_window_click(void *ctx, event_t *e)
 static ret_t
 show_font(void *ctx, event_t *e)
 {
-  if (ctx == NULL)
-    return RET_OK;
   wchar_t *str = (wchar_t *)ctx;
   size_t len = wcslen(str);
   printf("%ls\n", str);
   paint_event_t *evt = (paint_event_t *)e;
   canvas_t *c = evt->c;
   vgcanvas_t *vg = canvas_get_vgcanvas(c);
-  // for (int i = 0; i < len; i++)
-  // {
-  unsigned char *point = font_buf[100].buffer;
-  int num = *point + *(point + 1) * 256;
-  while (num != 0)
+  for (int i = 0; i < len; i++)
   {
-    for (int j = 0; j < num; j++)
+    unsigned char *point = font_buf[100].buffer;
+    int num = *point + *(point + 1) * 256;
+    point += 2;
+    while (num != 0)
     {
-      if (j == 0)
-        vgcanvas_move_to(vg, *point + 100, 320 - *(point + 1));
-      else
-        vgcanvas_line_to(vg, *point + 100, 320 - *(point + 1));
+      for (int j = 0; j < num; j++)
+      {
+        if (j == 0)
+          vgcanvas_move_to(vg, *point + 40 + i * 40, 320 - *(point + 1));
+        else
+          vgcanvas_line_to(vg, *point + 40 + i * 40, 320 - *(point + 1));
+        point += 2;
+      }
+      num = *point + *(point + 1) * 256;
       point += 2;
     }
-    num = *point + *(point + 1) * 256;
-    point += 2;
   }
-  // }
   vgcanvas_stroke(vg);
   return RET_OK;
 }
