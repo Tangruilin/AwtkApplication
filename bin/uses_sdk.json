@@ -1,0 +1,9 @@
+{
+  "compileSDK": {
+    "awtk": {
+      "path": "E:/AWTK/SDK/awtk",
+      "release_id": "21020",
+      "nanovg_backend": "AGGE"
+    }
+  }
+}

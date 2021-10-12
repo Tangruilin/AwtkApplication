@@ -1,0 +1,30 @@
+<window name="content_editing">
+  <view name="slide_view_view" x="128" y="53" w="560" h="357">
+    <slide_indicator name="slide_indicator" x="0" y="bottom" w="100%" h="10"/>
+    <slide_view name="slide_view" x="0" y="10" w="100%" h="-10">
+      <view name="edit1" x="0" y="0" w="100%" h="100%">
+        <label name="content3" x="10" y="215" w="75" h="28" text="内容3"/>
+        <label name="content1" x="10" y="42" w="75" h="28" text="内容1"/>
+        <label name="content2" x="10" y="130" w="75" h="28" text="内容2"/>
+        <edit name="edit1" x="110" y="42" w="87" h="28" tips="Please enter your text" step="2" auto_fix="true" min="0" max="1024"/>
+        <edit name="edit2" x="110" y="215" w="87" h="28" tips="Please enter your text" step="2" auto_fix="true" min="0" max="1024"/>
+        <edit name="edit3" x="110" y="130" w="87" h="28" tips="Please enter your text" step="2" auto_fix="true" min="0" max="1024"/>
+        <button name="button_edit1" x="224" y="42" w="50" h="28" text="编辑"/>
+        <button name="button_edit2" x="224" y="215" w="50" h="28" text="编辑"/>
+        <button name="button_edit3" x="224" y="130" w="50" h="28" text="编辑"/>
+        <button name="button" x="351" y="42" w="50" h="28" text="字体"/>
+        <button name="button" x="351" y="215" w="50" h="28" text="字体"/>
+        <button name="button" x="351" y="130" w="50" h="28" text="字体"/>
+        <spin_box name="spin_box1" x="418" y="42" w="110" h="28" tips="Please enter your value" input_type="int" auto_fix="true" min="0" max="1024" step="1"/>
+        <spin_box name="spin_box2" x="418" y="130" w="110" h="28" tips="Please enter your value" input_type="int" auto_fix="true" min="0" max="1024" step="1"/>
+        <spin_box name="spin_box3" x="418" y="215" w="110" h="28" tips="Please enter your value" input_type="int" auto_fix="true" min="0" max="1024" step="1"/>
+      </view>
+      <view name="edit2" x="0" y="0" w="100%" h="100%"/>
+    </slide_view>
+  </view>
+  <view name="view" x="128" y="420" w="560" h="50">
+    <button name="edit_position" x="10" y="10" w="125" h="30" text="编辑打标位置"/>
+    <button name="confirm" x="483" y="7" w="60" h="36" text="确定"/>
+    <button name="cancel" x="386" y="7" w="60" h="36" text="取消"/>
+  </view>
+</window>
