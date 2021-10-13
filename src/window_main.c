@@ -65,7 +65,7 @@ show_font(void *ctx, event_t *e)
   vgcanvas_t *vg = canvas_get_vgcanvas(c);
   for (int i = 0; i < len; i++)
   {
-    unsigned char *point = font_buf[100].buffer;
+    unsigned char *point = font_buf[str[i]].buffer;
     int num = *point + *(point + 1) * 256;
     point += 2;
     while (num != 0)
@@ -73,9 +73,9 @@ show_font(void *ctx, event_t *e)
       for (int j = 0; j < num; j++)
       {
         if (j == 0)
-          vgcanvas_move_to(vg, *point + 40 + i * 40, 320 - *(point + 1));
+          vgcanvas_move_to(vg, *point + 40 + i * 60, 320 - *(point + 1));
         else
-          vgcanvas_line_to(vg, *point + 40 + i * 40, 320 - *(point + 1));
+          vgcanvas_line_to(vg, *point + 40 + i * 60, 320 - *(point + 1));
         point += 2;
       }
       num = *point + *(point + 1) * 256;
