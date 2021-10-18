@@ -59,10 +59,13 @@ show_font(void *ctx, event_t *e)
 {
   wchar_t *str = (wchar_t *)ctx;
   size_t len = wcslen(str);
-  printf("%ls\n", str);
+  printf("str is %ls\n", str);
+  printf("len is %lld\n", len);
+  // return RET_OK;
   paint_event_t *evt = (paint_event_t *)e;
   canvas_t *c = evt->c;
   vgcanvas_t *vg = canvas_get_vgcanvas(c);
+  // return RET_OK;
   for (int i = 0; i < len; i++)
   {
     unsigned char *point = font_buf[str[i]].buffer;
@@ -73,9 +76,9 @@ show_font(void *ctx, event_t *e)
       for (int j = 0; j < num; j++)
       {
         if (j == 0)
-          vgcanvas_move_to(vg, *point + 40 + i * 60, 320 - *(point + 1));
+          vgcanvas_move_to(vg, *point + 120 + i * 70, 320 - *(point + 1));
         else
-          vgcanvas_line_to(vg, *point + 40 + i * 60, 320 - *(point + 1));
+          vgcanvas_line_to(vg, *point + 120 + i * 70, 320 - *(point + 1));
         point += 2;
       }
       num = *point + *(point + 1) * 256;
@@ -85,21 +88,49 @@ show_font(void *ctx, event_t *e)
   vgcanvas_stroke(vg);
   return RET_OK;
 }
+//
+//
+//
+//
+// static ret_t
+// edit_info(void *ctx, event_t *e)
+// {
+//   static uint32_t widget_ret = 0;
+//   widget_t *edit = WIDGET(e->target);
+//   const wchar_t *str = widget_get_text(edit);
+//   widget_t *win = widget_get_window(edit);
+//   widget_t *canvas;
+//   if (win)
+//     canvas = widget_lookup(win, "canvas", TRUE);
+//   if (widget_ret != 0)
+//     widget_off(canvas, widget_ret);
+//   widget_ret = widget_on(canvas, EVT_PAINT, show_font, (void *)str);
+//   // printf("%ls\n", str);
+//   return RET_OK;
+// }
 
 static ret_t
-edit_info(void *ctx, event_t *e)
+canvas_font(void *ctx, event_t *e)
 {
+  static wchar_t *str;
   static uint32_t widget_ret = 0;
-  widget_t *edit = WIDGET(e->target);
-  wchar_t *str = widget_get_text(edit);
-  widget_t *win = widget_get_window(edit);
-  widget_t *canvas;
-  if (win)
-    canvas = widget_lookup(win, "canvas", TRUE);
+  widget_t *win = WIDGET(ctx);
+  widget_t *edit = widget_lookup(win, "MyEdit", TRUE);
+  widget_t *canvas = widget_lookup(win, "canvas", TRUE);
   if (widget_ret != 0)
+  {
+    free(str);
     widget_off(canvas, widget_ret);
+  }
+  // edit编辑器初始化的时候，估计是直接初始化到了一个具体的地址，而不是采取写缓存的机制
+  const wchar_t *src = widget_get_text(edit);
+  str = (wchar_t *)malloc(wcslen(src) + 1);
+  wcscpy(str, src);
+  // str = widget_get_text(edit);
+  printf("%ls\n", str);
+  printf("len is %lld\n", wcslen(str));
+  // return RET_OK;
   widget_ret = widget_on(canvas, EVT_PAINT, show_font, (void *)str);
-  // printf("%ls\n", str);
   return RET_OK;
 }
 // open_content_edit_window_click is to open the window content/content_editing
@@ -122,12 +153,11 @@ static ret_t init_widget(void *ctx, const void *iter)
     else if (tk_str_eq(name, "canvas"))
     {
       printf("enter the canvas\n");
-      // widget_on(widget, EVT_PAINT, show_font, NULL); //画布的绘制初始化
     }
-    else if (tk_str_eq(name, "MyEdit"))
+    else if (tk_str_eq(name, "canvas_font"))
     {
-      printf("The Edit\n");
-      widget_on(widget, EVT_IM_ACTION, edit_info, NULL);
+      printf("Enter the font\n");
+      widget_on(widget, EVT_CLICK, canvas_font, win);
     }
   }
   return RET_OK;

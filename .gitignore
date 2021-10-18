@@ -1,0 +1,6 @@
+#忽略design, bin, res文件夹，这个文件夹的内容可以开awtk designer自动生成
+design/
+bin/
+res/
+#忽略obj文件，这些文件都是中间文件
+*.obj
