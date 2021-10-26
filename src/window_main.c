@@ -2,10 +2,6 @@
 #include "awtk.h"
 
 // define the canva in the window
-class test
-{
-  int buf;
-};
 
 struct FONT_BUF
 {
