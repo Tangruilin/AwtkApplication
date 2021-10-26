@@ -1,0 +1,28 @@
+<?xml ruler_x="367"?>
+<window name="home_page">
+  <view name="view1" x="84" y="25" w="706" h="25" disg:lock="true">
+    <button name="Edit" x="110" y="0" w="70" h="25" text="编辑"/>
+    <button name="Setting" x="237" y="0" w="70" h="25" text="设置"/>
+    <button name="Info" x="626" y="0" w="70" h="25" text="信息"/>
+    <button name="Open" x="0" y="0" w="70" h="25" text="打开"/>
+  </view>
+  <button name="enlarge" x="37" y="133" w="70" h="36" text="放大"/>
+  <button name="restore" x="37" y="270" w="70" h="36" text="还原"/>
+  <button name="norrow" x="37" y="201" w="70" h="36" text="缩小"/>
+  <button name="all" x="37" y="342" w="70" h="36" text="观察所有"/>
+  <view name="view2" x="536" y="418" w="223" h="36">
+    <button name="RedLight" x="0" y="0" w="60" h="36" text="红光"/>
+    <button name="Laser" x="80" y="0" w="60" h="36" style="default" style:normal:border_color="#FFFFFF" text="标刻"/>
+    <button name="Stop" x="163" y="0" w="60" h="36" text="停止"/>
+  </view>
+  <view name="view3" x="536" y="73" w="223" h="128">
+    <label name="label" x="18" y="17" w="46" h="28" text="计数"/>
+    <edit name="edit" x="84" y="17" w="80" h="28" tips="Please enter your text" step="2" auto_fix="true" min="0" max="1024"/>
+    <button name="clear" x="173" y="16" w="40" h="29" text="清零"/>
+    <spin_box name="Power" x="83" y="76" w="120" h="28" tips="Please enter your value" input_type="int" auto_fix="true" min="0" max="1024" step="1"/>
+    <label name="label" x="23" y="75" w="46" h="28" text="功率"/>
+  </view>
+  <canvas name="canvas" x="159" y="107" w="346" h="290"/>
+  <edit name="MyEdit" x="221" y="62" w="223" h="28" tips="Please enter your text" step="2" auto_fix="true" min="0" max="1024"/>
+  <button name="canvas_font" x="79" y="62" w="80" h="28" text="显示"/>
+</window>
